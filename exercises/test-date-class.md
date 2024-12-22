@@ -53,3 +53,62 @@ Use the project in [tp3-date](../code/tp3-date) to complete this exercise.
 
 ## Answer
 
+
+`isValidDate(day, month, year)`
+
+| Characteristics | day     | month                | year          |
+|-----------------|---------|----------------------|---------------|
+|                 |         | <=0                  | < 0           |
+|                 | 1 .. 31 | in [1,3,5,7,8,10,12] | >= 0          |
+|                 | 1 .. 30 | in [4,6,9,11]        | >= 0          |
+|                 | 1 .. 29 | == 2                 | is leap year  |
+|                 | 1 .. 28 | == 2                 | not leap year |
+|                 |         | > 12                 | any year      |
+
+`isLeapYear(year)`
+
+| Characteristics | year                         |
+|-----------------|------------------------------|
+|                 | y < 0                        |
+|                 | y % 4 == 0                   |
+|                 | y % 100 == 0 && y % 400 == 0 |
+|                 | y % 100 == 0 && y % 400 != 0 |
+|                 | else                         |
+
+`nextDate()`
+
+| Characteristics | Date                                                |
+|-----------------|-----------------------------------------------------|
+|                 | not a valid date                                    |
+|                 | Date.day < max of day in Date.month                 |
+|                 | Date.day == max of day in Date.month and month < 12 |
+|                 | Date.day == 31 and month == 12                      |
+
+`previousDate()`
+
+
+
+| Characteristics | Date                         |
+|-----------------|------------------------------|
+|                 | not a valid date             |
+|                 | Date.day == 1 and month == 1 |
+|                 | Date.day == 1 and month > 1  |
+|                 | Date.day > 1                 |
+
+`compareTo(Date)`
+
+| Characteristics | Date1                     | Date2            |
+|-----------------|---------------------------|------------------|
+|                 | not a valid date          | not a valid date |
+|                 | not a valid date          |                  |
+|                 |                           | not a valid date |
+|                 | valid date prior to date2 | valid date       |
+|                 | valid date equal to date2 | valid date       |
+|                 | valid date after date2    | valid date       |
+
+Several common properties: whether a date is valid, and often day ranges are from 1 to 31 (or 30, 29, 28) and month range is always 1 to 12.
+
+We obtained 93% coverage rate with 41/44 lines for our Date class. Uncovered statements are mainly in private helper method for isLessThan function. We added more tests to cover each branch for year, month and day.
+
+We have a mutation coverage of 94% (60/64). Remained mutants are mainly changed boundaries for `if (year < 0)` and `if (month <= 0 || month > 12)` and `return this.day < other.day`. As these checking points are quite trivial, we are not going to populate more tests.
+

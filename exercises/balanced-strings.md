@@ -26,3 +26,35 @@ Use the project in [tp3-balanced-strings](../code/tp3-balanced-strings) to compl
 
 ## Answer
 
+
+| Characteristics: value of str   |
+|---------------------------------|
+| contains char other than ({[]}) |
+| size is not even                |
+| Empty string                    |
+| Nested balanced string          |
+| Composed balanced string        |
+| Other cases                     |
+
+The test implementation had a coverage of 82%, which means 14 of 17 lines in the method were covered.
+
+The not covered branches are in case string's size is smaller than 2 or the case of private stack emptied too early.
+
+It turns out that these two branches are already implemented by other cases or in an inpossible path, therefore it's
+better to remove them.
+
+The test coverage is now 100%.
+
+The current test satisfies the Base choice coverage since those multiple booleans are just an enumeration of valid
+characters as input. Each partition come from a mutation of simple criterion.
+
+The PIT score was 67% as 12 of 18 mutations were valid.
+
+We were able to discovery an issue that illegal characters were not excluded and fixed it.
+
+We found that the implementation was wrong while it was just matching the stored symbol with eaten one, instead of
+making a correspondence of left one to one.
+
+After this issue corrected, we got 100% of coverage from both line coverage and PIT one.
+
+To conclude, PIT test allows to detect issues that are more likely hidden in normal unit tests.

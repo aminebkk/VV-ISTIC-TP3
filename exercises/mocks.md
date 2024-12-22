@@ -9,3 +9,7 @@ Rewrite these tests with the help of Mockito.
 The initial tests fail to completely test the `TLSSockeetFactory`. In fact, if we *entirely* remove the code inside the body of `prepareSocket` no test case fails.
 
 Propose a solution to this problem in your new Mockito-based test cases.
+
+# Answer
+
+To address the issue where the tests pass even if the body of the prepareSocket method is empty, we can test that the getSupportedProtocols and getEnabledProtocols methods are called and verify the order in which they are invoked.
